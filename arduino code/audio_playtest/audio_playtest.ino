@@ -1,5 +1,7 @@
 /*readme!
-this code used for testing audio matrix playback for ARDUINO MRX 1010!
+this code used for testing audio matrix playback for ARDUINO MRX 1010! If use Arduino R4, please change following configuration:
+1. DAC->12bits
+2. Don't use "delay" function! Timer or millis() will prevent program blocking
 SampleRate=16k
 DAC=10bits
 */
@@ -35,7 +37,7 @@ void playChime() {
 }
 // 辅助函数：播放一个完整的正弦波周期
 void playOneCycle(int delayTime) {
-  for (int i = 0; i < 360; i += 10) { // 以10度为步进，加快执行效率
+  for (int i = 0; i < 360; i += 10) { // 
     float angle = i * (PI / 180.0);
     uint16_t val = (uint16_t)((sin(angle) + 1.0) * 511.5);
     analogWrite(A0, val);
